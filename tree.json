@@ -1,0 +1,217 @@
+[
+    {
+        "id": "1",
+        "name": "public",
+        "isFolder": true,
+        "children": [
+            {
+                "id": "2",
+                "name": "index.html",
+                "isFolder": false
+            },
+            {
+                "id": "3",
+                "name": "favicon.ico",
+                "isFolder": false
+            }
+        ]
+    },
+    {
+        "id": "4",
+        "name": "src",
+        "isFolder": true,
+        "children": [
+            {
+                "id": "5",
+                "name": "components",
+                "isFolder": true,
+                "children": [
+                    {
+                        "id": "6",
+                        "name": "Navbar.jsx",
+                        "isFolder": false
+                    },
+                    {
+                        "id": "7",
+                        "name": "Sidebar.jsx",
+                        "isFolder": false
+                    }
+                ]
+            },
+            {
+                "id": "8",
+                "name": "pages",
+                "isFolder": true,
+                "children": [
+                    {
+                        "id": "9",
+                        "name": "Home.jsx",
+                        "isFolder": false
+                    },
+                    {
+                        "id": "10",
+                        "name": "Login.jsx",
+                        "isFolder": false
+                    }
+                ]
+            },
+            {
+                "id": "11",
+                "name": "config",
+                "isFolder": true,
+                "children": [
+                    {
+                        "id": "12",
+                        "name": "env.js",
+                        "isFolder": false
+                    }
+                ]
+            },
+            {
+                "id": "13",
+                "name": "routes",
+                "isFolder": true,
+                "children": [
+                    {
+                        "id": "14",
+                        "name": "index.js",
+                        "isFolder": false
+                    }
+                ]
+            },
+            {
+                "id": "15",
+                "name": "store",
+                "isFolder": true,
+                "children": [
+                    {
+                        "id": "16",
+                        "name": "store.js",
+                        "isFolder": false
+                    }
+                ]
+            },
+            {
+                "id": "17",
+                "name": "App.js",
+                "isFolder": false
+            },
+            {
+                "id": "18",
+                "name": "main.jsx",
+                "isFolder": false
+            }
+        ]
+    },
+    {
+        "id": "19",
+        "name": "server",
+        "isFolder": true,
+        "children": [
+            {
+                "id": "20",
+                "name": "controllers",
+                "isFolder": true,
+                "children": [
+                    {
+                        "id": "21",
+                        "name": "authController.js",
+                        "isFolder": false
+                    }
+                ]
+            },
+            {
+                "id": "22",
+                "name": "components",
+                "isFolder": true,
+                "children": [
+                    {
+                        "id": "23",
+                        "name": "Navbar.jsx",
+                        "isFolder": false
+                    },
+                    {
+                        "id": "24",
+                        "name": "Sidebar.jsx",
+                        "isFolder": false
+                    }
+                ]
+            },
+            {
+                "id": "25",
+                "name": "models",
+                "isFolder": true,
+                "children": [
+                    {
+                        "id": "26",
+                        "name": "User.js",
+                        "isFolder": false
+                    }
+                ]
+            },
+            {
+                "id": "27",
+                "name": "routes",
+                "isFolder": true,
+                "children": [
+                    {
+                        "id": "28",
+                        "name": "authRoutes.js",
+                        "isFolder": false
+                    }
+                ]
+            },
+            {
+                "id": "29",
+                "name": "middlewares",
+                "isFolder": true,
+                "children": [
+                    {
+                        "id": "30",
+                        "name": "authMiddleware.js",
+                        "isFolder": false
+                    }
+                ]
+            },
+            {
+                "id": "31",
+                "name": "server.js",
+                "isFolder": false
+            }
+        ]
+    },
+    {
+        "id": "32",
+        "name": "tests",
+        "isFolder": true,
+        "children": [
+            {
+                "id": "33",
+                "name": "app.test.js",
+                "isFolder": false
+            }
+        ]
+    },
+    {
+        "id": "34",
+        "name": "docs",
+        "isFolder": true,
+        "children": [
+            {
+                "id": "35",
+                "name": "README.md",
+                "isFolder": false
+            }
+        ]
+    },
+    {
+        "id": "36",
+        "name": ".gitignore",
+        "isFolder": false
+    },
+    {
+        "id": "37",
+        "name": "package.json",
+        "isFolder": false
+    }
+]

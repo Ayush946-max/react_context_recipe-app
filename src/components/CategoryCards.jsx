@@ -51,37 +51,40 @@ const CategoryCards = () => {
   };
 
   return (
-    <div className="mx-5 my-10 flex items-center justify-evenly flex-wrap gap-4">
-      {cards.map((item, index) => (
-        <div
-          onClick={() => catHandler(item.title)}
-          key={index}
-          className="text-center cursor-pointer group"
-        >
+    <div className="mx-auto my-6 px-4 max-w-8xl">
+      <div className="flex items-center justify-center flex-wrap gap-4 sm:gap-6 md:gap-10 lg:gap-14">
+        {cards.map((item, index) => (
           <div
-            className={`w-[6em] h-[5em] overflow-hidden rounded-2xl border-2 transition-all ${
-              filters.category === item.title
-                ? "border-amber-600 shadow-lg shadow-amber-600/50 scale-110"
-                : "border-amber-600/40 hover:border-amber-600"
-            }`}
+            onClick={() => catHandler(item.title)}
+            key={index}
+            className="text-center cursor-pointer group"
           >
-            <img
-              className="w-full h-full object-cover rounded-2xl group-hover:scale-125 transition-transform duration-500"
-              src={item.image}
-              alt={item.title}
-            />
+            <div
+              className={`w-[5em] h-[4em] sm:w-[6em] sm:h-[5em] overflow-hidden rounded-2xl border-2 transition-all duration-300 ${
+                filters.category === item.title
+                  ? "border-amber-600 shadow-lg shadow-amber-600/30 scale-105 sm:scale-110 bg-amber-50"
+                  : "border-amber-600/30 hover:border-amber-600 bg-white"
+              }`}
+            >
+              <img
+                className="w-full h-full object-cover rounded-2xl group-hover:scale-110 sm:group-hover:scale-125 transition-transform duration-500"
+                src={item.image}
+                alt={item.title}
+              />
+            </div>
+
+            <h5
+              className={`mt-2 text-lg sm:text-2xl font-medium transition-colors whitespace-nowrap ${
+                filters.category === item.title
+                  ? "text-amber-700 font-bold"
+                  : "text-gray-600 dark:text-white/70"
+              }`}
+            >
+              {item.title}
+            </h5>
           </div>
-          <h5
-            className={`mt-2 font-medium transition-colors ${
-              filters.category === item.title
-                ? "text-amber-700 font-bold"
-                : "text-gray-700"
-            }`}
-          >
-            {item.title}
-          </h5>
-        </div>
-      ))}
+        ))}
+      </div>
     </div>
   );
 };

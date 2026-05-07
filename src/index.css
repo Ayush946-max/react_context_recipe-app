@@ -1,5 +1,14 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
+
+
+.dongle-regular {
+  font-family: "Dongle", sans-serif;
+}
+
+
 .no-scrollbar::-webkit-scrollbar {
   display: none;
 }
@@ -46,4 +55,14 @@
 
 .animate-slideDown {
   animation: slideDown 0.3s ease-out;
+}
+
+
+@layer base {
+  body {
+    /* If @apply fails, use standard CSS properties to test */
+    transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 300ms;
+  }
 }

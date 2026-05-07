@@ -6,6 +6,7 @@ import RecipeDetails from "../components/RecipeDetails"
 import CreateRecipe from "../pages/CreateRecipe"
 import WildCard from "../components/WildCard"
 import Fav from "../pages/Fav"
+import Setting from "../pages/Setting"
 
 const AppRoutes = () => {
 
@@ -16,10 +17,10 @@ const AppRoutes = () => {
             <Route index element={<Home />} />
             <Route path='/recipe' element={<Recipe />} />
             <Route path='/recipe/details/:id' element={<RecipeDetails />} />
-            <Route path='/createRecipe' element={<CreateRecipe />} />
+            <Route path='/createrecipe' element={<CreateRecipe />} />
             <Route path='/fav' element={<Fav />} />
-            {/* <Route path='/setting' element={<Setting />} />
-            <Route path='/myAccount' element={<MyAccount />} /> */}
+            <Route path='/setting' element={<Setting />} />
+            {/* <Route path='/myAccount' element={<MyAccount />} /> */}
             <Route path='*' element={<WildCard />} />
           </Route>
         </Routes>

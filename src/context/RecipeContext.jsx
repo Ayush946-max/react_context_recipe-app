@@ -4,9 +4,7 @@ import { createContext, useEffect, useState, useMemo } from "react";
 export const rc = createContext(null);
 
 const RecipeContext = (props) => {
-  const [darkMode, setDarkMode] = useState(
-    JSON.parse(localStorage.getItem("mode")) || "",
-  );
+  const [isDark, setIsDark] = useState(false);
 
   const [allData, setAllData] = useState([]); // Original data (never changes)
   const [data, setData] = useState([]); // Filtered data for UI
@@ -142,8 +140,8 @@ const RecipeContext = (props) => {
         setFavorite,
 
         // Dark Mode
-        darkMode,
-        setDarkMode,
+        isDark,
+        setIsDark,
 
         // Search
         suggestions,

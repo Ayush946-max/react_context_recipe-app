@@ -64,7 +64,7 @@ const CreateRecipe = () => {
   };
 
   return (
-    <div className="relative min-h-screen w-full flex justify-center items-center py-20 overflow-x-hidden">
+    <div className="relative min-h-screen w-full flex justify-center items-center py-20 overflow-x-hidden text-2xl">
       {/* Background Preview */}
       {imageUrl && (
         <img
@@ -75,7 +75,7 @@ const CreateRecipe = () => {
       )}
       <div className="absolute inset-0 backdrop-blur-md bg-amber-100/10" />
 
-      <div className="relative z-10 w-full max-w-3xl p-8 bg-white/90 shadow-2xl rounded-3xl border border-amber-100">
+      <div className="relative z-10 w-full max-w-3xl p-8 bg-white/90 dark:bg-zinc-950 dark:text-white shadow-2xl rounded-3xl border border-amber-100">
         <h1 className="text-4xl font-bold text-center mb-8 text-amber-800">
           New Recipe 🍕
         </h1>
@@ -123,7 +123,7 @@ const CreateRecipe = () => {
             />
             <select
               {...register("difficulty")}
-              className="p-3 border rounded-xl bg-white"
+              className="p-3 border rounded-xl bg-white dark:bg-black/90"
             >
               <option value="Easy">Easy</option>
               <option value="Medium">Medium</option>
@@ -132,8 +132,8 @@ const CreateRecipe = () => {
           </div>
 
           {/* Dynamic Ingredients */}
-          <div className="p-4 bg-amber-50/50 rounded-2xl border border-amber-100">
-            <h2 className="font-bold text-amber-800 mb-3">Ingredients</h2>
+          <div className="p-4 bg-amber-50/50 dark:bg-black/60 rounded-2xl border border-amber-100">
+            <h2 className="text-2xl font-bold text-amber-800 mb-3">Ingredients</h2>
             {ingFields.map((field, index) => (
               <input
                 key={field.id}
@@ -145,15 +145,15 @@ const CreateRecipe = () => {
             <button
               type="button"
               onClick={() => appendIng("")}
-              className="text-sm font-bold text-amber-700"
+              className="text-xl font-bold text-amber-700"
             >
               + Add Ingredient
             </button>
           </div>
 
           {/* Dynamic Instructions */}
-          <div className="p-4 bg-orange-50/50 rounded-2xl border border-orange-100">
-            <h2 className="font-bold text-orange-800 mb-3">Instructions</h2>
+          <div className="p-4 bg-orange-50/50 dark:bg-black/60 rounded-2xl border border-orange-100">
+            <h2 className="text-2xl font-bold text-orange-800 mb-3">Instructions</h2>
             {insFields.map((field, index) => (
               <textarea
                 key={field.id}
@@ -165,7 +165,7 @@ const CreateRecipe = () => {
             <button
               type="button"
               onClick={() => appendIns("")}
-              className="text-sm font-bold text-orange-700"
+              className="text-xl font-bold text-orange-700"
             >
               + Add Step
             </button>
@@ -188,7 +188,7 @@ const CreateRecipe = () => {
           <button
             type="submit"
             disabled={isSubmitting}
-            className="w-full py-4 bg-amber-600 text-white font-bold rounded-2xl hover:bg-amber-700 transition-all shadow-lg shadow-amber-200"
+            className="w-full py-4 bg-amber-600 dark:bg-amber-800 text-white dark:text-black font-bold rounded-2xl hover:bg-amber-700 transition-all shadow-xl shadow-amber-800/10 dark:shadow-amber-950/20"
           >
             {isSubmitting ? "Saving..." : "Create Recipe"}
           </button>

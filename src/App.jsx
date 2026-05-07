@@ -1,24 +1,28 @@
-import { useRef } from "react";
+import { useContext, useRef, useState } from "react";
 import ScrollToTop from "./components/ScrollToTop";
 import Nav from "./pages/Nav";
 import { Outlet } from "react-router-dom";
-
+import { rc } from "./context/RecipeContext";
 
 const App = () => {
+  const [isOpen, setIsOpen] = useState(false);
+
   const scrollRef = useRef(null);
+  const { isDark } = useContext(rc);
 
   return (
-    <div className="flex h-screen w-screen bg-gray-700">
+    <div
+      className={`${isDark ? "dark" : ""} flex h-screen w-screen bg-white dark:bg-[#0f0f0f]`}
+    >
       <ScrollToTop scrollRef={scrollRef} />
 
-      <div className="w-80">
-        <Nav />
+      <div className={`${isDark ? "dark" : ""} w-12 lg:w-72`}>
+        <Nav isOpen={isOpen} setIsOpen={setIsOpen} />
       </div>
 
-      {/* 👇 THIS is the scroll container */}
       <div
         ref={scrollRef}
-        className="flex-1 bg-[#F8F8F8] overflow-y-auto rounded-tl-md"
+        className={`${isDark ? "dark" : ""} flex-1 bg-[#F8F8F8] dark:bg-[#0f0f0f] overflow-y-auto rounded-tl-md`}
       >
         <Outlet />
       </div>

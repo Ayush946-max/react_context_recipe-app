@@ -65,52 +65,56 @@ const SearchBar = () => {
 
   return (
     <>
-      <div className="relative max-w-2xl mx-auto px-5">
-        <div className="bg-orange-400/60 hover:bg-orange-400/70 my-5 rounded-full pl-5 flex items-center shadow-md hover:shadow-xl transition-shadow-colors duration-300">
-          <div className="text-xl pr-3 py-2 text-gray-700 animate-fadeIn">
+      <div className="relative max-w-2xl mx-auto px-4 sm:px-5">
+        <div className="bg-orange-400/60 dark:bg-amber-900 hover:bg-orange-400/70 dark:hover:bg-amber-800 my-5 rounded-full pl-4 sm:pl-5 flex items-center shadow-md hover:shadow-xl transition-all duration-300">
+          <div className="text-lg sm:text-xl pr-2 sm:pr-3 py-2 text-gray-700 dark:text-white/70 animate-fadeIn">
             <i className="ri-search-line"></i>
           </div>
 
           <input
-            className="outline-none w-full text-lg ml-4 bg-transparent placeholder:text-stone-800/60 placeholder:italic hover:placeholder:text-stone-800 animate-fadeIn"
+            className="outline-none w-full text-lg sm:text-2xl ml-2 sm:ml-4 bg-transparent placeholder:text-stone-800/60 dark:placeholder:text-white/60 placeholder:italic placeholder:text-lg sm:placeholder:text-2xl hover:placeholder:text-stone-800 dark:hover:placeholder:text-white animate-fadeIn dark:text-white"
             type="text"
             value={searchTerm}
             onChange={(e) => {
               setSearchTerm(e.target.value);
               setShowDropdown(true);
-              updateFilter("selectedRecipe", null); // Clear selected recipe when typing
+              updateFilter("selectedRecipe", null);
             }}
-            placeholder="Search recipes, ingredients, or cuisines..."
+            placeholder="Search recipes..."
           />
 
           <button
-            className="pr-5 text-gray-700 text-xl relative hover:text-black animate-fadeIn"
+            className={`pr-4 sm:pr-5 text-gray-700 dark:text-white/60 text-lg sm:text-xl relative hover:text-black dark:hover:text-white/70 animate-fadeIn`}
             onClick={filterHandler}
           >
-            <i className="ri-equalizer-line"></i>
+            <i className={`ri-equalizer-line ${hasActiveFilters && 'dark:text-white text-black'}`}></i>
             {hasActiveFilters && (
-              <span className="absolute top-0.5 right-3.5 w-2 h-2 bg-red-500 rounded-full"></span>
+              <span className="absolute top-0.5 right-3 sm:right-3.5 w-2 h-2 bg-red-500 rounded-full"></span>
             )}
           </button>
         </div>
 
-        {/* Search Suggestions Dropdown */}
+        {/* Search Suggestions Dropdown - Adjusted for mobile width */}
         {showDropdown && suggestions.length > 0 && (
-          <div className="absolute top-full mt-2 w-full bg-white rounded-xl shadow-lg max-h-80 overflow-y-auto z-50">
+          <div className="absolute top-full left-4 right-4 sm:left-0 sm:right-0 mt-2 bg-white dark:bg-zinc-950 dark:text-white rounded-xl shadow-lg max-h-60 sm:max-h-80 overflow-y-auto z-50">
             {suggestions.map((s) => (
               <div
                 key={s.id}
                 onClick={() => sugHandler(s)}
-                className="flex items-center gap-3 p-2 hover:bg-orange-500 hover:text-white cursor-pointer transition-colors"
+                className="flex items-center gap-3 p-3 hover:bg-orange-500 dark:hover:bg-orange-500/20 hover:text-white cursor-pointer transition-colors"
               >
                 <img
                   src={s.image}
                   alt={s.name}
-                  className="w-10 h-10 rounded-full object-cover"
+                  className="w-8 h-8 sm:w-10 sm:h-10 rounded-full object-cover"
                 />
                 <div className="flex-1">
-                  <span className="font-medium">{s.name}</span>
-                  <p className="text-xs opacity-75">{s.cuisine}</p>
+                  <span className="font-medium text-lg sm:text-2xl">
+                    {s.name}
+                  </span>
+                  <p className="text-[13px] sm:text-base opacity-75">
+                    {s.cuisine}
+                  </p>
                 </div>
               </div>
             ))}
@@ -120,131 +124,126 @@ const SearchBar = () => {
 
       {/* Filter Panel */}
       {filterDropDown && (
-        <div className="fixed right-0 top-4 bg-[#940D0D] shadow-2xl w-80 h-[calc(100vh-1rem)] overflow-y-auto p-6 z-50 rounded-l-2xl duration-700 animate-slideIn">
-          <div className="flex justify-between items-center mb-6">
-            <h3 className="text-white text-xl font-bold">Filters</h3>
-            <button
-              onClick={() => setFilterDropDown(false)}
-              className="text-white text-2xl hover:text-red-500 transition-colors"
-            >
-              ✕
-            </button>
-          </div>
+        <>
+          <div
+            className="fixed inset-0 bg-black/40 z-40 md:hidden"
+            onClick={() => setFilterDropDown(false)}
+          />
+          <div className="fixed right-0 top-0 sm:top-4 bg-[#940D0D] dark:dark:bg-[#1a0202] shadow-2xl w-80 h-full sm:h-[calc(100vh-2rem)] overflow-y-auto p-5 sm:p-6 z-50 sm:rounded-l-2xl transition-transform duration-1000 animate-slideIn">
+            <div className="flex justify-between items-center mb-8 sm:mb-6">
+              <h3 className="text-white text-xl font-bold">Filters</h3>
+              <button
+                onClick={() => setFilterDropDown(false)}
+                className="text-white text-3xl sm:text-2xl p-2 hover:text-red-500 dark:hover:text-yellow-100 transition-colors"
+              >
+                ✕
+              </button>
+            </div>
 
-          <div className="space-y-6 text-white">
-            {/* Serving Size */}
-            <div className="border p-4 rounded-lg border-orange-500/50">
-              <div className="flex justify-between items-center mb-3">
-                <label className="text-lg font-medium">Serving Size</label>
+            <div className="space-y-8 sm:space-y-6 text-white pb-10">
+              {/* Serving Size */}
+              <div className="border p-4 rounded-lg border-orange-500/50">
+                <div className="flex justify-between items-center mb-4">
+                  <label className="text-lg font-medium">Serving Size</label>
+                  <span className="text-orange-300 font-bold">
+                    {filters.servings}
+                  </span>
+                </div>
+                <input
+                  type="range"
+                  min={0}
+                  max={40}
+                  step={1}
+                  value={filters.servings}
+                  onChange={(e) =>
+                    updateFilter("servings", Number(e.target.value))
+                  }
+                  className="w-full h-3 bg-white/20 rounded-lg appearance-none cursor-pointer accent-orange-500"
+                />
                 {filters.servings > 0 && (
                   <button
                     onClick={() => updateFilter("servings", 0)}
-                    className="text-xs text-orange-300 hover:text-white"
+                    className="text-sm text-orange-300 mt-4 border py-1.5 px-4 rounded-xl border-orange-300/50 transition-colors hover:bg-orange-300/20"
                   >
                     Clear
                   </button>
                 )}
               </div>
 
-              <input
-                type="range"
-                min={0}
-                max={40}
-                step={1}
-                value={filters.servings}
-                onChange={(e) =>
-                  updateFilter("servings", Number(e.target.value))
-                }
-                className="w-full accent-orange-400"
-              />
-
-              <div className="flex justify-between text-sm mt-2">
-                <span>0 (Any)</span>
-                <span className="font-semibold">
-                  {filters.servings > 0 ? `Min ${filters.servings}` : "Any"}
-                </span>
-                <span>40</span>
-              </div>
-            </div>
-
-            {/* Difficulty */}
-            <div className="border p-4 rounded-lg border-orange-500/50">
-              <div className="flex justify-between items-center mb-3">
-                <label className="text-lg font-medium">Difficulty</label>
-                {filters.difficulty && (
-                  <button
-                    onClick={() => updateFilter("difficulty", null)}
-                    className="text-xs text-orange-300 hover:text-white"
-                  >
-                    Clear
-                  </button>
-                )}
+              {/* Difficulty */}
+              <div className="border p-4 rounded-lg border-orange-500/50">
+                <div className="flex justify-between items-center mb-3">
+                  <label className="text-lg font-medium block mb-4">
+                    Difficulty
+                  </label>
+                  {filters.difficulty && (
+                    <button
+                      onClick={() => updateFilter("difficulty", null)}
+                      className="text-base text-orange-300 hover:text-white mb-4"
+                    >
+                      Clear
+                    </button>
+                  )}
+                </div>
+                <div className="grid grid-cols-3 gap-2">
+                  {diffState.map((diff) => (
+                    <button
+                      key={diff}
+                      onClick={() => updateFilter("difficulty", diff)}
+                      className={`px-2 py-2 rounded-xl text-base sm:text-lg transition ${
+                        filters.difficulty === diff
+                          ? "bg-orange-600 dark:bg-amber-500/20 text-white"
+                          : "bg-white/10 text-white hover:bg-white/20"
+                      }`}
+                    >
+                      {diff}
+                    </button>
+                  ))}
+                </div>
               </div>
 
-              <div className="flex gap-2">
-                {diffState.map((diff) => (
-                  <button
-                    key={diff}
-                    onClick={() => updateFilter("difficulty", diff)}
-                    className={`flex-1 px-4 py-2 rounded-full font-medium transition ${
-                      filters.difficulty === diff
-                        ? "bg-orange-600 text-white"
-                        : "bg-white/80 text-gray-700 hover:bg-gray-100"
-                    }`}
-                  >
-                    {diff}
-                  </button>
-                ))}
-              </div>
-            </div>
-
-            {/* Cook Time */}
-            <div className="border p-4 rounded-lg border-orange-500/50">
-              <div className="flex justify-between items-center mb-3">
-                <label className="text-lg font-medium">Max Cook Time</label>
+              {/* Cook Time */}
+              <div className="border p-4 rounded-lg border-orange-500/50">
+                <div className="flex justify-between items-center mb-4">
+                  <label className="text-lg font-medium">Max Cook Time</label>
+                  <span className="text-orange-300 font-bold">
+                    {filters.time} min
+                  </span>
+                </div>
+                <input
+                  type="range"
+                  min={0}
+                  max={40}
+                  step={2}
+                  value={filters.time}
+                  onChange={(e) => updateFilter("time", Number(e.target.value))}
+                  className="w-full h-3 bg-white/20 rounded-lg appearance-none cursor-pointer accent-orange-500"
+                />
                 {filters.time > 0 && (
                   <button
                     onClick={() => updateFilter("time", 0)}
-                    className="text-xs text-orange-300 hover:text-white"
+                    className="text-sm text-orange-300 mt-4 border py-1.5 px-4 rounded-xl border-orange-300/50 transition-colors hover:bg-orange-300/20"
                   >
                     Clear
                   </button>
                 )}
               </div>
 
-              <input
-                type="range"
-                min={0}
-                max={120}
-                step={5}
-                value={filters.time}
-                onChange={(e) => updateFilter("time", Number(e.target.value))}
-                className="w-full accent-orange-500"
-              />
-
-              <div className="flex justify-between text-sm mt-2">
-                <span>0 (Any)</span>
-                <span className="font-semibold">
-                  {filters.time > 0 ? `≤ ${filters.time} min` : "Any"}
-                </span>
-                <span>120 min</span>
-              </div>
+              {/* Clear All Button */}
+              {hasActiveFilters && (
+                <button
+                  onClick={() => {
+                    resetFilters();
+                    setFilterDropDown(false);
+                  }}
+                  className="w-full py-4 bg-amber-500 hover:bg-amber-600 text-[#940D0D] font-black text-xl uppercase rounded-xl shadow-xl transition-all active:scale-95"
+                >
+                  Clear All Filters
+                </button>
+              )}
             </div>
-
-            {/* Clear All Button */}
-            {hasActiveFilters && (
-              <button
-                onClick={() => {
-                  resetFilters();
-                  setFilterDropDown(false);
-                }}
-                className="w-full py-3 bg-orange-600 hover:bg-orange-700 text-white font-semibold rounded-xl transition-colors"
-              >
-                Clear All Filters
-              </button>
-            )}
           </div>
-        </div>
+        </>
       )}
     </>
   );

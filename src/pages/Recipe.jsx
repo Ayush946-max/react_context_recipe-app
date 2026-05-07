@@ -6,7 +6,7 @@ import RecipeCard from "../components/RecipeCard";
 import CategoryCards from "../components/CategoryCards";
 
 const Recipe = () => {
-  const { data, setData, setAllData, selectedRecipe, allData } = useContext(rc);
+  const { data, setData, setAllData, selectedRecipe } = useContext(rc);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -51,18 +51,36 @@ const Recipe = () => {
   const recipesToShow = selectedRecipe.length > 0 ? selectedRecipe : data;
 
   return (
-    <div className="animate-fadeIn">
-      {/* -------- HERO SLIDER -------- */}
-      <HeroSlider />
+    <div className="animate-fadeIn min-h-screen">
+      {/* Container with responsive padding to breathe on mobile */}
+      <div className="px-2 md:px-8 lg:px-12 py-6 space-y-10">
+        {/* HERO SECTION - Ensure Slider is responsive internally */}
+        <section className="w-full overflow-hidden rounded-3xl shadow-lg">
+          <HeroSlider />
+        </section>
 
-      {/* -------- SEARCH BAR --------- */}
-      <SearchBar />
+        {/* SEARCH & FILTER SECTION - Stacked on mobile, row on desktop */}
+        <section className="flex flex-col gap-6 items-center justify-between">
+          <div className="w-full lg:w-2/3 xl:1/2">
+            <SearchBar />
+          </div>
+          <div className="w-full md:w-auto">
+            <CategoryCards />
+          </div>
+        </section>
 
-      {/* ------- CATEGORY CARDS ------- */}
-      <CategoryCards />
+        {/* RECIPE GRID SECTION */}
+        <section>
+          <h2 className="text-3xl font-bold mb-6 text-gray-800 dark:text-white/80 px-4">
+            {selectedRecipe.length > 0
+              ? "Filtered Results"
+              : "Featured Recipes"}
+          </h2>
 
-      {/* ------ MAIN RECIPE LIST ------ */}
-      <RecipeCard recipesToShow={recipesToShow} isLoading={isLoading} />
+          {/* We pass the grid logic into RecipeCard or handle it here */}
+          <RecipeCard recipesToShow={recipesToShow} isLoading={isLoading} />
+        </section>
+      </div>
     </div>
   );
 };
